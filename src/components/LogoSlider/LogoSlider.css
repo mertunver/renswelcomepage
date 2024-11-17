@@ -1,0 +1,51 @@
+.logo-slider-container {
+  background-color: #072927;
+  padding: 40px 0;
+  overflow: hidden;
+}
+
+.logo-slider {
+  display: flex;
+  overflow-x: hidden;
+  white-space: nowrap;
+  width: calc(100% - 12cm);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo-set {
+  display: flex;
+  animation: slide 20s linear infinite;
+}
+
+.logo-item {
+  flex: 0 0 calc(33.333% - 40px);
+  display: inline-block;
+  margin: 0 20px;
+}
+
+.logo-item img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 100px;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-slider {
+    width: calc(100% - 2cm);
+  }
+
+  .logo-item {
+    flex: 0 0 calc(100% - 40px);
+  }
+}

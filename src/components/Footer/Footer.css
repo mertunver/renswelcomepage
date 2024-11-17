@@ -1,0 +1,177 @@
+.footer {
+  background-color: #072927;
+  color: #F0F8F0;
+  padding: 60px 40px 20px;
+  font-family: 'Poppins', 'sans-serif';
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid #F0F8F0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 900px;
+  margin-left: auto;
+}
+
+.footer-columns {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40px;
+  width: 100%;
+}
+
+.footer-column {
+  flex: 1;
+}
+
+.footer-column h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #F0F8F0;
+  text-align: center;
+}
+
+.footer-column ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  color: #F0F8F0;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: #DFFFBF;
+}
+
+.product-logos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+}
+
+.product-logo {
+  max-width: 100px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.product-logo:hover {
+  transform: scale(1.1);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-icons li a {
+  color: #F0F8F0;
+  font-size: 24px;
+}
+
+.contact-info {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.contact-info p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.footer-bottom {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid #F0F8F0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo-bottom img {
+  max-width: 750px;
+  height: auto;
+}
+
+.footer-links a {
+  color: #F0F8F0;
+  text-decoration: none;
+  font-size: 12px;
+  margin-left: 20px;
+}
+
+#animation-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.icon {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  opacity: 0.7;
+  transition: transform 0.3s ease-out;
+}
+
+.co2-icon {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.recycling-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .footer-columns {
+    flex-direction: column;
+  }
+
+  .footer-column {
+    margin-bottom: 30px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-links {
+    margin-top: 20px;
+  }
+
+  .footer-links a {
+    display: inline-block;
+    margin: 10px;
+  }
+
+  .product-logos {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
