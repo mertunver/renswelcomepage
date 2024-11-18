@@ -44,8 +44,8 @@ const Header = () => {
           ))}
         </nav>
         <div className="nav-buttons">
-          <a href="/login" className="header-button">Login</a>
-          <a href="/marketplace" className="header-button secondary">RENS Market</a>
+          <a href="https://app.rens.co" className="header-button">Login</a>
+          <a href="https://app.rens.co/marketplace" className="header-button secondary">RENS Market</a>
         </div>
       </div>
     </header>
