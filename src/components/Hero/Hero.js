@@ -37,7 +37,7 @@ const Hero = () => {
         >
           <div className="hero-buttons">
             <button className="hero-button">Paketler</button>
-            <Link to="/" className="hero-button secondary">Demo Talebi</Link>
+            <Link to="/demo-request" className="hero-button secondary">Demo Talebi</Link>
           </div>
         </motion.div>
       </div>

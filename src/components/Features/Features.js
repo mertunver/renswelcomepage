@@ -5,17 +5,20 @@ const featureData = [
   {
     logo: "/images/rens.co2logo.png",
     description: "Rens.CO2, işletmenizin karbon yönetimini dijitalleştiren ve modern süreçlerle entegre eden yenilikçi bir platformdur. Bu modül, karbon ayak izinizi ayrıntılı bir şekilde ölçerek ISO 14064-1 standartlarına uygun raporlar üretir. Karbon emisyonlarınızı dijital olarak izleyip yönetirken, çevresel performansınızı sürekli geliştirmek için gerekli tüm araçları sunar.\n\nDijital dönüşüm sürecinde karbon yönetimini sadeleştirir, otomatik raporlama sistemleriyle manuel süreçleri ortadan kaldırır. Rens.CO2, işletmelerin karbon ayak izlerini daha verimli bir şekilde izleyip azaltmalarına olanak tanır. Verilerinizi tek bir dijital platformda toplayarak, sürdürülebilirlik hedeflerinize ulaşmanızı hızlandırır.\n\nAyrıca, Rens.CO2 ile dijital analiz araçları sayesinde gelecekteki karbon emisyonlarınızı öngörebilir, emisyon azaltım stratejilerinizi oluşturabilirsiniz. Bu modül, sürdürülebilirlik hedeflerinize dijital bir perspektif kazandırarak işletmenizin karbon yönetimi yolculuğunu kolaylaştırır.",
-    buttonColor: "green"
+    buttonColor: "green",
+    featureImages:  ["/images/co2_1.jpg", "/images/co2_2.jpg", "/images/co2_3.jpg", "/images/co2_4.jpg"]
   },
   {
     logo: "/images/rensmarketlogo.png",
     description: "Rens Market, sürdürülebilir hammadde ve atık ticaretini dijitalleştiren ve bu sayede karbon emisyonlarını azaltan güçlü bir platformdur. Özellikle Scope 3 emisyonlarını yönetme ve azaltma konusunda büyük avantajlar sağlar. Düşük emisyonlu ve ikincil hammaddelerle ticaret yaparak, döngüsel ekonomiye katkıda bulunurken, karbon ayak izinizi minimize edebilirsiniz.\n\nBu dijital pazar yeri, işletmelerin sürdürülebilir malzemelere hızlı ve kolay bir şekilde erişim sağlamasına olanak tanır. Rens Market'in sunduğu dijital çözümler sayesinde, sürdürülebilir tedarik zincirini güçlendirebilir ve maliyetlerinizi optimize edebilirsiniz. Dijital ticaret süreçleri, hammadde tedariğini hızlandırırken, karbon azaltımı konusunda önemli bir adım atmanızı sağlar.\n\nRens Market ile atıklarınızı gelir kaynağına çevirirken, sürdürülebilir hammaddeye ulaşarak Scope 3 emisyonlarını önemli ölçüde azaltabilirsiniz. Dijitalleşen atık yönetimi ve ticaret süreçleri, çevreye duyarlı bir iş modeli geliştirmenize katkı sağlar.",
-    buttonColor: "purple"
+    buttonColor: "purple",
+    featureImages: ["/images/market_1.jpg", "/images/market_2.jpg", "/images/market_3.jpg", "/images/market_4.jpg"]
   },
   {
     logo: "/images/rens_exchange_logo.png",
     description: "Rens Exchange, dijital dönüşüm sürecinde atık ve karbon kredisi fiyatlarını takip etmenin en modern yolunu sunar. Piyasalardaki atık ve karbon fiyatlarını gerçek zamanlı olarak izleyerek, ticari kararlarınızı hızla alabilir ve sürdürülebilirlik stratejinizi bu verilere göre optimize edebilirsiniz. Dijital takip sistemleri sayesinde piyasa dalgalanmalarına proaktif yanıtlar verebilirsiniz.\n\nYakın zamanda Rens Exchange platformuna karbon kredisi piyasası da entegre edilecektir. Bu sayede, karbon kredisi ticareti yaparak hem çevresel yükümlülüklerinizi yerine getirebilir hem de ticari fırsatlar yaratabilirsiniz. Dijitalleşen karbon kredisi piyasası, işletmenizin sürdürülebilirlik stratejisine önemli bir katkı sağlar.\n\nRens Exchange'in sunduğu piyasa analiz araçları, karbon ve atık ticaretinde daha bilinçli ve verimli kararlar almanıza yardımcı olur. Dijital platformun sağladığı fiyat trend analizleri, sürdürülebilirlik yatırımlarınızı doğru zamanlama ile yapmanıza olanak tanır.",
-    buttonColor: "blue"
+    buttonColor: "blue",
+    featureImages:  ["/images/exchange_1.jpg", "/images/exchange_2.jpg", "/images/exchange_3.jpg", "/images/exchange_4.jpg"]
   }
 ];
 
@@ -86,7 +89,7 @@ const Features = () => {
           <FeatureCard 
             key={index} 
             {...feature} 
-            images={Array(4).fill("/placeholder.svg?height=200&width=200")}
+            images={feature.featureImages}
           />
         ))}
       </div>

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { motion } from 'framer-motion';
 import './DemoRequestPage.css';
+import emailjs from '@emailjs/browser';
 
-const DemoRequestPage = () => {
+
+function DemoRequestPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,6 +13,8 @@ const DemoRequestPage = () => {
     phone: '',
     message: '',
   });
+
+  const form = useRef();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -28,7 +31,7 @@ const DemoRequestPage = () => {
       await axios.post('/api/send-email', {
         ...formData,
         to: 'info@rens.co',
-        subject: 'New Demo Request',
+        subject: 'Yeni Demo Talebi',
       });
       setSubmitStatus('success');
       setFormData({
@@ -46,108 +49,132 @@ const DemoRequestPage = () => {
     setIsSubmitting(false);
   };
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    emailjs.sendForm('service_de2y80g', 'template_f291wzp', form.current, {
+      publicKey: 'DhZiyRMoTD54q9-1V',
+    })
+    .then(
+      () => {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          position: '',
+          phone: '',
+          message: '',
+        });
+      },
+      (error) => {
+        setSubmitStatus('error');
+      },
+    );
+    setIsSubmitting(false);
+   
+  };
+
   return (
-    <div className="demo-request-page">
-      <div className="background-logos">
-        {[...Array(10)].map((_, index) => (
-          <motion.img
-            key={index}
-            src="/images/rens_logo.svg"
-            alt="Rens Logo"
-            className="background-logo"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ 
-              opacity: 0.1, 
-              scale: 1, 
-              x: Math.random() * window.innerWidth, 
-              y: Math.random() * window.innerHeight 
-            }}
-            transition={{ duration: 1, delay: index * 0.2 }}
-          />
-        ))}
-      </div>
-      <div className="content">
-        <h1>Request a Demo</h1>
-        <p>Fill out the form below to request a demo of our product.</p>
-        <form onSubmit={handleSubmit} className="demo-form">
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="company">Company</label>
-            <input
-              type="text"
-              id="company"
-              name="company"
-              value={formData.company}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="position">Position</label>
-            <input
-              type="text"
-              id="position"
-              name="position"
-              value={formData.position}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="phone">Phone</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="message">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            ></textarea>
-          </div>
-          <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? 'Submitting...' : 'Submit Request'}
-          </button>
-        </form>
-        {submitStatus === 'success' && (
-          <p className="success-message">Your demo request has been submitted successfully!</p>
-        )}
-        {submitStatus === 'error' && (
-          <p className="error-message">There was an error submitting your request. Please try again.</p>
-        )}
-      </div>
+    <div className="page-container">
+     
+      <main className="main-content with-header-space">
+        <div className="form-container">
+          <img src="/images/rens_logo.svg" alt="rens logo" className="form-logo" />
+          <h1>Demo Talebi</h1>
+          <p>Ürünümüzün demosunu talep etmek için aşağıdaki formu doldurun.</p>
+          
+          <form ref={form} onSubmit={sendEmail} className="demo-form">
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="name">Ad Soyad</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">E-posta</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="company">Şirket</label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="position">Pozisyon</label>
+                <input
+                  type="text"
+                  id="position"
+                  name="position"
+                  value={formData.position}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="phone">Telefon</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="message">Mesaj</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" className="submit-button" disabled={isSubmitting}>
+              {isSubmitting ? 'Gönderiliyor...' : 'Demo Talebi Gönder'}
+            </button>
+          </form>
+
+          {submitStatus === 'success' && (
+            <p className="success-message">Demo talebiniz başarıyla gönderildi!</p>
+          )}
+          {submitStatus === 'error' && (
+            <p className="error-message">Talebiniz gönderilirken bir hata oluştu. Lütfen tekrar deneyin.</p>
+          )}
+        </div>
+      </main>
+      
     </div>
   );
-};
+}
 
 export default DemoRequestPage;
