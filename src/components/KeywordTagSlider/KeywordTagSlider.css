@@ -3,29 +3,53 @@
 .keyword-tag-slider {
   width: 100%;
   background-color: #072927;
-  padding: 48px 0;
+  padding: 24px 0; /* Reduced padding for mobile */
+  overflow: hidden; /* Ensure no horizontal scroll */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 .slider-container {
   max-width: 1340px;
   margin: 0 auto;
   background-color: #DFFFBF;
-  border-radius: 50px;
-  padding: 10px;
+  border-radius: 24px; /* Smaller radius for mobile */
+  padding: 8px;
   overflow: hidden;
+  position: relative; /* For better overflow control */
 }
 
 .tags-container {
   display: flex;
   overflow-x: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  ); /* Fade edges on mobile */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
 }
 
 .tags-wrapper {
   display: flex;
-  animation: slide 45s linear infinite;
+  animation: slide 30s linear infinite; /* Slightly faster on mobile */
+  will-change: transform; /* Performance optimization */
+  touch-action: pan-y pinch-zoom; /* Better touch handling */
 }
 
 .tags-wrapper.paused {
+  animation-play-state: paused;
+}
+
+/* Double the tags for seamless loop */
+.tags-wrapper:hover {
   animation-play-state: paused;
 }
 
@@ -33,16 +57,22 @@
   background-color: #DFFFBF;
   border: 1px solid #072927;
   border-radius: 9999px;
-  padding: 8px 16px;
-  margin: 8px;
+  padding: 6px 12px; /* Smaller padding for mobile */
+  margin: 6px;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  user-select: none; /* Prevent text selection */
+  -webkit-user-select: none;
+  cursor: default;
 }
 
 .tag span {
-  font-family: "Aeonik Medium", "Aeonik Medium Placeholder", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
+  font-family: "Inter", sans-serif; /* Fallback to system font */
+  font-size: 12px; /* Smaller for mobile */
+  font-weight: 500; /* Slightly bolder for readability */
   color: #072927;
+  line-height: 1.2;
 }
 
 @keyframes slide {
@@ -54,18 +84,56 @@
   }
 }
 
-@media (max-width: 768px) {
+/* Add touch interaction styles */
+@media (hover: none) {
+  .tags-wrapper:active {
+    animation-play-state: paused;
+  }
+}
+
+/* Tablet breakpoint */
+@media (min-width: 768px) {
+  .keyword-tag-slider {
+    padding: 32px 0;
+  }
+
   .slider-container {
     border-radius: 30px;
-    padding: 8px;
+    padding: 10px;
   }
 
   .tag {
-    padding: 6px 12px;
-    margin: 6px;
+    padding: 8px 16px;
+    margin: 8px;
   }
 
   .tag span {
-    font-size: 12px;
+    font-size: 13px;
+  }
+
+  .tags-wrapper {
+    animation: slide 45s linear infinite; /* Original speed */
+  }
+}
+
+/* Desktop breakpoint */
+@media (min-width: 1024px) {
+  .keyword-tag-slider {
+    padding: 48px 0;
+  }
+
+  .slider-container {
+    border-radius: 50px;
+  }
+
+  .tag span {
+    font-size: 14px;
+  }
+}
+
+/* Handle reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .tags-wrapper {
+    animation-duration: 90s; /* Slower animation */
   }
 }
