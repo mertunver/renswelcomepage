@@ -14,12 +14,12 @@ body {
 
 .header {
   position: fixed;
-  top: 16px;
-  left: 16px;
-  right: 16px;
+  top: 8px; /* Reduced spacing on mobile */
+  left: 8px;
+  right: 8px;
   display: flex;
   justify-content: center;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
   z-index: 1000;
   transition: all 0.3s ease;
 }
@@ -30,7 +30,7 @@ body {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: calc(100% - 32px);
+  width: calc(100% - 16px); /* Adjusted for mobile */
   height: 100%;
   background-color: rgba(134, 153, 114, 0.5);
   opacity: 0;
@@ -51,51 +51,66 @@ body {
   align-items: center;
   width: 100%;
   max-width: 1200px;
-  padding: 0.25rem 2rem; /* Reduced top and bottom padding */
+  padding: 0.25rem 1rem; /* Reduced padding on mobile */
   z-index: 1;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  height: 64px; /* Increased height */
+  height: 40px; /* Smaller on mobile */
   width: auto;
   overflow: hidden;
 }
 
 .logo img {
-  height: 48px; /* Increased from 32px */
+  height: 32px; /* Smaller on mobile */
   width: auto;
   vertical-align: middle;
   object-fit: contain;
 }
 
-@media (min-width: 1024px) {
-  .logo img {
-    height: 56px; /* Even larger on bigger screens */
-  }
+/* Mobile menu button */
+.menu-toggle {
+  display: block; /* Show on mobile */
+  background: none;
+  border: none;
+  color: var(--light-grey);
+  font-size: 24px;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 1001;
 }
 
-.logo-image {
-  height: 100%;
-  width: auto;
-  object-fit: contain;
-  max-width: 100%;
-}
-
+/* Mobile navigation */
 .nav-links {
-  display: flex;
-  gap: 2rem;
+  display: none; /* Hidden by default on mobile */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--primary-bg);
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  z-index: 999;
+}
+
+.nav-links.active {
+  display: flex;
 }
 
 .nav-links a {
   text-decoration: none;
   color: var(--light-grey);
-  font-size: 16px;
+  font-size: 18px; /* Larger on mobile for better touch targets */
   font-weight: 500;
   letter-spacing: 0.5px;
   transition: color 0.3s ease;
+  padding: 12px 0; /* Larger touch target */
 }
 
 .nav-links a:hover {
@@ -104,8 +119,10 @@ body {
 
 .nav-buttons {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  flex-direction: column; /* Stack buttons on mobile */
+  gap: 0.75rem;
+  width: 100%; /* Full width on mobile */
+  padding: 0 1rem;
 }
 
 .header-button {
@@ -118,13 +135,12 @@ body {
   color: #FFFFFF;
   display: flex;
   font-family: 'Poppins', sans-serif;
-  font-size: 16px;
+  font-size: 14px; /* Smaller on mobile */
   font-weight: 600;
   justify-content: center;
   line-height: 1em;
-  max-width: 100%;
-  min-width: 140px;
-  padding: 12px 20px;
+  width: 100%; /* Full width on mobile */
+  padding: 12px 16px;
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
@@ -151,27 +167,82 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-@media (max-width: 768px) {
+/* Tablet breakpoint */
+@media (min-width: 768px) {
+  .header {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+  }
+
   .header-content {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .nav-buttons {
-    margin-top: 0.5rem;
-  }
-
-  .header-button {
-    font-size: 14px;
-    min-width: 120px;
-    padding: 10px 16px;
+    padding: 0.25rem 1.5rem;
   }
 
   .logo {
-    height: 48px; /* Slightly smaller on mobile */
+    height: 48px;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .menu-toggle {
+    display: none; /* Hide on tablet and up */
+  }
+
+  .nav-links {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+    padding: 0;
+  }
+
+  .nav-buttons {
+    flex-direction: row;
+    width: auto;
+    padding: 0;
+  }
+
+  .header-button {
+    width: auto;
+    min-width: 120px;
+  }
+}
+
+/* Desktop breakpoint */
+@media (min-width: 1024px) {
+  .header {
+    top: 16px;
+    left: 16px;
+    right: 16px;
+  }
+
+  .header-content {
+    padding: 0.25rem 2rem;
+  }
+
+  .logo {
+    height: 64px;
+  }
+
+  .logo img {
+    height: 56px;
+  }
+
+  .nav-links {
+    gap: 2rem;
+  }
+
+  .header-button {
+    font-size: 16px;
+    min-width: 140px;
+    padding: 12px 20px;
   }
 }
