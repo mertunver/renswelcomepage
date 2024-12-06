@@ -2,16 +2,16 @@
 
 .features-section {
   background-color: #072927;
-  padding: 60px;
+  padding: 24px 16px; /* Reduced base padding for mobile */
   font-family: 'Poppins', sans-serif;
 }
 
 .features-title {
-  font-size: 48px;
+  font-size: 28px; /* Smaller base size for mobile */
   font-weight: 700;
   color: #FFFFFF;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 24px; /* Reduced margin for mobile */
 }
 
 .features-title span {
@@ -21,15 +21,17 @@
 .features-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 8px; /* Added container padding */
 }
 
 .feature-card {
   background-color: #F2F4F5;
-  border-radius: 20px;
+  border-radius: 16px; /* Slightly reduced for mobile */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 40px;
-  margin-bottom: 40px;
+  padding: 24px 16px; /* Reduced padding for mobile */
+  margin-bottom: 24px; /* Reduced margin for mobile */
   display: flex;
+  flex-direction: column; /* Default to column layout on mobile */
   transition: box-shadow 0.3s ease, transform 0.5s ease, opacity 0.5s ease;
   opacity: 0;
   transform: translateY(20px);
@@ -46,34 +48,37 @@
 
 .feature-content {
   flex: 1;
-  padding-right: 30px;
-}
-
-.feature-logo {
-  max-width: 150px;
-  height: auto;
+  padding-right: 0; /* Remove padding on mobile */
   margin-bottom: 20px;
 }
 
+.feature-logo {
+  max-width: 120px; /* Smaller logo for mobile */
+  height: auto;
+  margin-bottom: 16px;
+}
+
 .feature-description {
-  font-size: 16px;
+  font-size: 14px; /* Smaller text for mobile */
   font-weight: 400;
   color: #072927;
-  line-height: 1.6;
-  margin-bottom: 30px;
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
 .feature-cta {
   display: inline-block;
-  font-size: 18px;
+  width: 100%; /* Full width on mobile */
+  font-size: 16px;
   font-weight: 500;
   color: #FFFFFF;
-  padding: 15px 30px;
-  border-radius: 30px;
+  padding: 12px 20px;
+  border-radius: 24px;
   text-decoration: none;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
+  text-align: center; /* Center text on mobile */
 }
 
 .feature-cta.purple {
@@ -97,37 +102,53 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 20px;
+  gap: 12px; /* Reduced gap for mobile */
+  aspect-ratio: 1; /* Makes the container square */
+  width: 100%;
+  height: auto; /* Remove fixed height */
+  max-width: 300px; /* Limit width on mobile */
+  margin: 0 auto; /* Center the grid */
 }
 
 .feature-image-wrapper {
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 8px;
+  aspect-ratio: 1; /* Makes each image container square */
 }
 
 .feature-image {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover; /* Changed to cover for better mobile display */
 }
 
-@media (max-width: 1024px) {
-  .feature-card {
-    flex-direction: column;
+/* Small tablets and large phones */
+@media (min-width: 480px) {
+  .features-section {
+    padding: 32px 24px;
   }
 
-  .feature-content {
-    padding-right: 0;
-    margin-bottom: 30px;
+  .features-title {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+
+  .feature-card {
+    padding: 28px 24px;
+    margin-bottom: 32px;
+  }
+
+  .feature-cta {
+    width: auto; /* Reset to auto width */
   }
 
   .feature-images {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    max-width: 400px;
   }
 }
 
-@media (max-width: 768px) {
+/* Tablets */
+@media (min-width: 768px) {
   .features-section {
     padding: 40px 20px;
   }
@@ -144,13 +165,42 @@
     font-size: 14px;
   }
 
-  .feature-cta {
+  .feature-images {
+    max-width: none;
+  }
+}
+
+/* Desktop and larger tablets */
+@media (min-width: 1024px) {
+  .features-section {
+    padding: 60px;
+  }
+
+  .features-title {
+    font-size: 48px;
+    margin-bottom: 40px;
+  }
+
+  .feature-card {
+    flex-direction: row;
+    padding: 40px;
+  }
+
+  .feature-content {
+    padding-right: 30px;
+    margin-bottom: 0;
+  }
+
+  .feature-description {
     font-size: 16px;
-    padding: 12px 24px;
+  }
+
+  .feature-logo {
+    max-width: 150px;
   }
 
   .feature-images {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    aspect-ratio: auto; /* Remove square aspect ratio on desktop */
+    gap: 20px;
   }
 }
