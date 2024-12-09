@@ -1,12 +1,58 @@
 /* ThreeD.css */
 .three-d-container {
-    width: 100%;
-    height: 60vh;
-    background-color: #072927;
-    overflow: hidden;
+  width: 100%;
+  height: 50vh; /* Slightly shorter on mobile */
+  background-color: #072927;
+  overflow: hidden;
+  position: relative; /* For proper positioning */
+  /* Fix for mobile browser height issues */
+  height: -webkit-fill-available;
+  min-height: 300px; /* Minimum height on mobile */
+  max-height: 600px; /* Maximum height on mobile */
+}
+
+.three-d-container canvas {
+  width: 100%;
+  height: 100%;
+  display: block; /* Remove potential spacing */
+  touch-action: none; /* Better touch handling */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on iOS */
+}
+
+/* Portrait orientation optimization */
+@media screen and (orientation: portrait) {
+  .three-d-container {
+      height: 40vh; /* Shorter in portrait mode */
+      min-height: 250px;
   }
-  
-  .three-d-container canvas {
-    width: 100%;
-    height: 100%;
+}
+
+/* Landscape orientation optimization */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+  .three-d-container {
+      height: 70vh; /* Taller in landscape */
   }
+}
+
+/* Tablet breakpoint */
+@media (min-width: 768px) {
+  .three-d-container {
+      height: 55vh;
+      min-height: 400px;
+  }
+}
+
+/* Desktop breakpoint */
+@media (min-width: 1024px) {
+  .three-d-container {
+      height: 60vh;
+      min-height: 500px;
+  }
+}
+
+/* Handle iOS Safari height issues */
+@supports (-webkit-touch-callout: none) {
+  .three-d-container {
+      height: -webkit-fill-available;
+  }
+}
